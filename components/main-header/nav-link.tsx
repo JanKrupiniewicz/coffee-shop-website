@@ -10,15 +10,15 @@ interface NavLinkProps {
 
 export default function NavLink({href, children} : NavLinkProps) {
     const currentPath = usePathname();
-    let cssClass = "";
+    let cssClass = "text-2xl lato text-stone-500 hover:text-stone-700 transition-colors duration-300 ease-in-out cursor-pointer";
 
     console.log(`currentPath: ${currentPath}`);
 
-    if(
+    if (
         currentPath.startsWith(`/${href}`) && 
         !(href === "" && currentPath != "/")
     ) {
-        cssClass += " text-blue-500";
+        cssClass += " text-black font-bold";
     }
 
     return (
