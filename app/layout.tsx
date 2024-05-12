@@ -32,9 +32,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`bg-gray-100 ${fraunces_init.variable} ${lato_init.variable}`}>
-        <MainHeader />
-        {children}
+      <body className={`bg-gray-100 flex flex-col min-h-screen ${fraunces_init.variable} ${lato_init.variable}`}>
+        <div className="flex-1">
+          <MainHeader />
+          <main>{children}</main>
+        </div>
         <MainFooter/>
       </body>
     </html>

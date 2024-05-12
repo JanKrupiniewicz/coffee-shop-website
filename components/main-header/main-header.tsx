@@ -6,7 +6,7 @@ export default function MainHeader() {
     <header>
         <HeaderPhotoGallery />
         <nav>
-            <ul className='flex flex-row justify-between m-5'>
+            <ul className='flex flex-col justify-between items-center m-5 sm:flex-row'>
                 <li>
                     <NavLink href="">Home</NavLink>
                 </li>

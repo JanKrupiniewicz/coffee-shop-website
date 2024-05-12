@@ -6,7 +6,7 @@ import instagram from '@/assets/icons/instagram.png';
 
 export default function MainFooter() {
     return (
-        <footer className="bg-stone-500 p-8 text-white text-center">
+        <footer className=" bg-stone-500 p-8 text-white text-center mt-auto">
             <div className="flex justify-center space-x-4">
                 <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
                     <Image
