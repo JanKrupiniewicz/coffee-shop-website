@@ -2,10 +2,10 @@ import { Location } from '@/util/types';
 
 export default function LocationItem({ location }: { location: Location }) {
     return (
-        <div className='flex flex-col border-y border-gray-900 p-2 lg:flex-row lg:border-none'>
+        <div className='flex flex-col border-b border-gray-400 p-2 lg:flex-row lg:border-none'>
             <div>
                 <iframe
-                    src={`https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=${encodeURIComponent(location.address1 + ',' + location.address2)}&maptype=roadmap`}
+                    src={location.mapUrl}
                     width="400"
                     height="400"
                     allowFullScreen

@@ -33,7 +33,7 @@ export default function ImageSlider() {
 
     return (
         <div className="flex justify-center items-center my-16">
-            <div className="w-2/3">
+            <div className="w-full md:w-3/4">
                 <div className="relative" style={{ paddingBottom: '66.66667%' }}>
                 <Image
                     src={IMAGES[currentImage].image}
