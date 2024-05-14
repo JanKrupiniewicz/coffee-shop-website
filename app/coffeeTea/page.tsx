@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import sampleTeas from "@/util/tea";
 import TeaItem from "@/components/tea-item";
 import fairTradeLogo from "@/assets/fairtrade-logos.webp";
 import TeaSelectionsLogo from "@/assets/tea-cups-3000x3000.webp";
@@ -30,30 +31,14 @@ export default function CoffeeTea() {
                 className="m-auto my-5"
             />
             <div>
-                <TeaItem
-                    tea={{
-                        name: "Green Tea",
-                        description: "Green tea is made from unoxidized leaves and is one of the less processed types of tea. It therefore contains the most antioxidants and beneficial polyphenols."
-                    }}
-                />
-                <TeaItem
-                    tea={{
-                        name: "Black Tea",
-                        description: "Black tea is made from oxidized leaves and has the strongest flavor and highest caffeine content of all tea types."
-                    }}
-                />
-                <TeaItem
-                    tea={{
-                        name: "Oolong Tea",
-                        description: "Oolong tea is a traditional Chinese tea made from partially oxidized leaves. It is often described as being between green and black tea in taste."
-                    }}
-                />
-                <TeaItem
-                    tea={{
-                        name: "White Tea",
-                        description: "White tea is made from young leaves and buds that are steamed or fired. It has a delicate flavor and contains the least caffeine."
-                    }}
-                />
+                {
+                    sampleTeas.map((tea) => (
+                        <TeaItem
+                            key={tea.name}
+                            tea={tea}
+                        />
+                    ))
+                }
             </div>
         </div>
     );

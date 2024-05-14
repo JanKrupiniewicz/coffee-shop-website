@@ -1,5 +1,5 @@
 import LocationItem from "@/components/location-item";
-import sampleLocations from "@/util/sampleLocations";
+import sampleLocations from "@/util/locations";
 
 export default function Locations() {
     return (

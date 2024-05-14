@@ -6,6 +6,7 @@ export interface Location {
     openHoursMF: string;
     openHoursSat: string;
     openHoursSun: string;
+    mapUrl: string;
 }
 
 export interface Tea {
