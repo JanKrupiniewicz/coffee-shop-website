@@ -2,13 +2,16 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
+import MainPhotoImg from "./main-photo-img";
 
 import gallery1 from "@/assets/gallery-1.jpg";
 import gallery2 from "@/assets/gallery-2.jpg";
 import gallery3 from "@/assets/gallery-3.jpg";
 import gallery4 from "@/assets/gallery-4.jpg";
 
-const SLIDING_ANIMATION_DURATION = 1000;
+const SLIDING_ANIMATION_DURATION = 2000;
 const IMAGES = [
     { image: gallery1, alt: "Coffee" },
     { image: gallery2, alt: "Coffee" },
@@ -34,13 +37,12 @@ export default function ImageSlider() {
     return (
         <div className="flex justify-center items-center my-16">
             <div className="w-full md:w-3/4">
-                <div className="relative" style={{ paddingBottom: '66.66667%' }}>
-                <Image
-                    src={IMAGES[currentImage].image}
-                    alt={IMAGES[currentImage].alt}
-                    className="absolute inset-0 w-full h-full object-cover hover:opacity-70 "
-                />
-                </div>
+                <AnimatePresence>
+                    <MainPhotoImg
+                        IMAGES={IMAGES}
+                        currentImage={currentImage}
+                    />
+                </AnimatePresence>
                 <div className="flex flex-row justify-between">
                     {IMAGES.map((image, index) => {
                         const style = index === currentImage ? 
@@ -54,13 +56,21 @@ export default function ImageSlider() {
                                 onClick={() => animateChangeImage(index)}
                             >
                                 <div className="p-4 bg-gray-100">
-                                    <div className="relative" style={{ paddingBottom: '100%' }}>
+                                    <motion.div 
+                                        className="relative" 
+                                        style={{ paddingBottom: '100%' }}
+                                        whileHover={{ scale: 1.1 }}
+                                        animate={{ 
+                                            scale: index === currentImage ? 1.1 : 1,
+                                            transition: { duration: 0.5 }
+                                        }}
+                                    >
                                         <Image
                                             src={image.image}
                                             alt={image.alt}
                                             className={style}
                                         />
-                                    </div>
+                                    </motion.div>
                                 </div>
                             </button>
                         );

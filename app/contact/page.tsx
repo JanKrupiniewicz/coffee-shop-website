@@ -1,6 +1,8 @@
 'use client';
 import { useState } from "react";
+import { sendContactForm } from "@/lib/api";
 import { validateName, validateEmail, validateMessage, validatePhone } from '@/util/validation';
+import PageHeader from "@/components/page-header";
 
 interface ContactFormValues {
     firstName: string;
@@ -53,7 +55,7 @@ export default function Contact() {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) : void => {
         e.preventDefault();
-        alert('Form Submitted!');
+        sendContactForm(values);        
     };
 
     const firstNameIsValid = !didEdit.firstName || (values.firstName.length > 0 && validateName(values.firstName));
@@ -67,9 +69,9 @@ export default function Contact() {
 
     return (
         <div className="m-5 text-center">
-            <h1 className="text-center text-5xl fraunces my-5">
+            <PageHeader>
                 Contact Us
-            </h1>
+            </PageHeader>
             <div className="flex justify-center items-center">
                 <form className="w-full md:w-3/4" onSubmit={handleSubmit}>
                     <div className="flex flex-col items-center">

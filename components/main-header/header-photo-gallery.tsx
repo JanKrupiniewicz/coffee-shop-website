@@ -1,9 +1,10 @@
 'use client';
 
 import { useEffect, useState } from "react";
-import { ArrowBigLeft, ArrowBigRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import Image from "next/image";
 
+import NavigationButton from "./navigation-button";
 import gallery1 from "@/assets/gallery-1.jpg";
 import gallery2 from "@/assets/gallery-2.jpg";
 import gallery3 from "@/assets/gallery-3.jpg";
@@ -29,6 +30,18 @@ export default function HeaderPhotoGallery() {
         return () => clearInterval(interval);
     });
 
+    const handlePrevClick = () => {
+        setCurrentImage(prevIndex => (
+            prevIndex === 0 ? images.length - 1 : prevIndex - 1
+        ));
+    };
+
+    const handleNextClick = () => {
+        setCurrentImage(prevIndex => (
+            prevIndex === images.length - 1 ? 0 : prevIndex + 1
+        ));
+    };
+
     return (
         <div className="w-100 h-136 relative overflow-x-hidden">
             {images.map((image, index) => (
@@ -40,22 +53,25 @@ export default function HeaderPhotoGallery() {
                 />
             ))}
             <div className="flex flex-row justify-between absolute top-1/2 w-full">
-                <button
-                    className="absolute left-1 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-2 hover:shadow-xl"
-                    onClick={() => setCurrentImage(prevIndex => (
-                        prevIndex === 0 ? images.length - 1 : prevIndex - 1
-                    ))}
-                >
-                    <ArrowBigLeft className="text-stone-700 hover:text-stone-900" size={32} />
-                </button>
-                <button
-                    className="absolute right-1 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-2 hover:shadow-xl"
-                    onClick={() => setCurrentImage(prevIndex => (
-                        prevIndex === images.length - 1 ? 0 : prevIndex + 1
-                    ))}
-                >
-                    <ArrowBigRight className="text-stone-700 hover:text-stone-900" size={32} />
-                </button>
+                <NavigationButton 
+                    onClick={handlePrevClick}
+                    direction="left"
+                    icon= {
+                        <ArrowLeft 
+                            className="text-stone-800 hover:text-stone-900" 
+                            size={52} 
+                        />
+                    }
+                />
+                <NavigationButton
+                    onClick={handleNextClick}
+                    direction="right"
+                    icon={
+                        <ArrowRight
+                            className="text-stone-800 hover:text-stone-900" 
+                            size={52} 
+                        />} 
+                />
             </div>
             <div className="flex flex-row absolute bottom-4 w-full justify-center">
                 {images.map((_, index) => (
