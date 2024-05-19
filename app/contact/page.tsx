@@ -1,5 +1,6 @@
 'use client';
 import { useState } from "react";
+import { useAnimate, stagger } from "framer-motion";
 import { sendContactForm } from "@/lib/api";
 import { validateName, validateEmail, validateMessage, validatePhone } from '@/util/validation';
 import PageHeader from "@/components/page-header";
@@ -37,6 +38,8 @@ export default function Contact() {
         message: false
     });
 
+    const [scope, animate] = useAnimate();
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) : void => {
         setValues({
             ...values,
@@ -55,6 +58,23 @@ export default function Contact() {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) : void => {
         e.preventDefault();
+
+        if (
+            !validateName(values.firstName) || 
+            !validateName(values.lastName) || 
+            !validateEmail(values.email) || 
+            !validatePhone(values.phone) || 
+            !validateMessage(values.message)
+        ) {
+            animate('form', {
+                x: [-10, 10, 0], 
+            }, {
+                type: 'spring',
+                stiffness: 500,
+                duration: 0.7
+            });
+            return;
+        }
         sendContactForm(values);        
     };
 
@@ -72,7 +92,7 @@ export default function Contact() {
             <PageHeader>
                 Contact Us
             </PageHeader>
-            <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center" ref={scope}>
                 <form className="w-full md:w-3/4" onSubmit={handleSubmit}>
                     <div className="flex flex-col items-center">
                         <div className="text-sm lato flex justify-between w-full">
@@ -127,13 +147,6 @@ export default function Contact() {
                     </div>
                     <div className="flex justify-end">
                         <button
-                            disabled = {
-                                !validateName(values.firstName) || 
-                                !validateName(values.lastName) || 
-                                !validateEmail(values.email) || 
-                                !validatePhone(values.phone) || 
-                                !validateMessage(values.message)
-                            }
                             className="bg-grey-500 w-1/3 border-b border-l border-r border-gray-600 lato text-md text-gray-800 p-5 hover:bg-stone-500 hover:text-white"
                         >
                             Submit

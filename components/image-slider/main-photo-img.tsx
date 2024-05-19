@@ -12,6 +12,7 @@ export default function MainPhotoImg({IMAGES, currentImage} : MainPhotoImgProps)
             <motion.div
                 initial={{ y: -30, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
+                exit={{ y: 30, opacity: 0}}
                 transition={{ duration: 0.2 }}
                 className="absolute inset-0 w-full h-full bg-gray-100"
             >
