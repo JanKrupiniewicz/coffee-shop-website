@@ -1,29 +1,31 @@
-import HeaderPhotoGallery from './header-photo-gallery';
-import NavLink from './nav-link';
+import { getTranslations } from "@/lib/translation";
+import HeaderPhotoGallery from "./header-photo-gallery";
+import NavLink from "./nav-link";
+import { Translations } from "../../lib/translation";
 
-export default function MainHeader() {
+export default async function MainHeader({ t }: { t: Translations }) {
   return (
     <header>
-        <HeaderPhotoGallery />
-        <nav>
-            <ul className='flex flex-col justify-between items-center m-5 sm:flex-row'>
-                <li>
-                    <NavLink href="">Home</NavLink>
-                </li>
-                <li>
-                    <NavLink href="coffeeTea">Coffee & Tea</NavLink>
-                </li>
-                <li>
-                    <NavLink href="locations">Locations</NavLink>
-                </li>
-                <li>
-                    <NavLink href="contact">Contact</NavLink>
-                </li>
-                <li>
-                    <NavLink href="catering">Catering</NavLink>
-                </li>
-            </ul>
-        </nav>
+      <HeaderPhotoGallery />
+      <nav>
+        <ul className="flex flex-col justify-between items-center m-5 sm:flex-row">
+          <li>
+            <NavLink href="">{t.home}</NavLink>
+          </li>
+          <li>
+            <NavLink href="coffeeTea">{t.coffeeTea}</NavLink>
+          </li>
+          <li>
+            <NavLink href="locations">{t.locations}</NavLink>
+          </li>
+          <li>
+            <NavLink href="contact">{t.contact}</NavLink>
+          </li>
+          <li>
+            <NavLink href="catering">{t.catering}</NavLink>
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 }
